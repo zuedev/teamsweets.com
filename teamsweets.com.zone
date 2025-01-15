@@ -1,6 +1,6 @@
 ;;
 ;; Domain:     teamsweets.com.
-;; Exported:   2025-01-15 00:02:19
+;; Exported:   2025-01-15 00:31:06
 ;;
 ;; This file is intended for use for informational and archival
 ;; purposes ONLY and MUST be edited before use on a production
@@ -24,19 +24,20 @@
 ;;
 ;; Use at your own risk.
 ;; SOA Record
-teamsweets.com	3600	IN	SOA	bristol.ns.cloudflare.com. dns.cloudflare.com. 2048856593 10000 2400 604800 3600
+teamsweets.com	3600	IN	SOA	bristol.ns.cloudflare.com. dns.cloudflare.com. 2048856766 10000 2400 604800 3600
 
 ;; NS Records
 teamsweets.com.	86400	IN	NS	bristol.ns.cloudflare.com.
 teamsweets.com.	86400	IN	NS	jay.ns.cloudflare.com.
 
 ;; CNAME Records
+autoconfig.teamsweets.com.	1	IN	CNAME	mail-in-a-box.zue.dev. ; cf_tags=cf-proxied:false
+autodiscover.teamsweets.com.	1	IN	CNAME	mail-in-a-box.zue.dev. ; cf_tags=cf-proxied:false
 teamsweets.com.	1	IN	CNAME	area96.digital. ; cf_tags=cf-proxied:true
 
 ;; MX Records
-teamsweets.com.	1	IN	MX	52 route3.mx.cloudflare.net.
-teamsweets.com.	1	IN	MX	66 route2.mx.cloudflare.net.
-teamsweets.com.	1	IN	MX	29 route1.mx.cloudflare.net.
+teamsweets.com.	1	IN	MX	10 mail-in-a-box.zue.dev.
 
 ;; TXT Records
-teamsweets.com.	1	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+_dmarc.teamsweets.com.	86400	IN	TXT	"v=DMARC1; p=quarantine;"
+teamsweets.com.	86400	IN	TXT	"v=spf1 include:mail-in-a-box.zue.dev ~all"
