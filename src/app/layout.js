@@ -4,7 +4,7 @@ export const metadata = {
   title: "Team Sweets",
   description: "VTSweets' official website",
   icons: {
-    icon: "/favicon.png",
+    icon: "/sweet.png",
   },
 };
 
