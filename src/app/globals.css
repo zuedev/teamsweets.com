@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+20&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-jersey: "Jersey 20";
+}
+
+:root {
+  --from: #77b2fd;
+  --via: #6409d3;
+  --to: #cb64e9;
+}
+
+/* hide scrollbar */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.sweets {
+  background: linear-gradient(
+    45deg,
+    var(--from) 0%,
+    var(--via) 50%,
+    var(--to) 100%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

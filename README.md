@@ -2,4 +2,4 @@
 
 # teamsweets.com
 
-This is the source code for the Team Sweets website. It is built using [React](https://reactjs.org/) and [Vite](https://vitejs.dev/).
+[VTSweets](https://x.com/VTuberSweets)' official website.
