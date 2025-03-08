@@ -5,9 +5,9 @@ import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,24 +25,28 @@ export default () => {
               }
               return prev + targetUsername.charAt(prev.length);
             });
-          }, 100);
+          }, 50);
         });
       };
 
       const typePassword = () => {
-        const typingPassword = setInterval(() => {
-          setPassword((prev) => {
-            if (prev === targetPassword) {
-              clearInterval(typingPassword);
-              return prev;
-            }
-            return prev + targetPassword.charAt(prev.length);
-          });
-        }, 100);
+        return new Promise((resolve) => {
+          const typingPassword = setInterval(() => {
+            setPassword((prev) => {
+              if (prev === targetPassword) {
+                clearInterval(typingPassword);
+                resolve();
+                return prev;
+              }
+              return prev + targetPassword.charAt(prev.length);
+            });
+          }, 50);
+        });
       };
 
       await typeUsername();
-      typePassword();
+      await typePassword();
+      setIsTypingComplete(true);
     };
 
     fetchData();
@@ -83,7 +87,12 @@ export default () => {
               />
               <button
                 onClick={handleOpen}
-                className="bg-[#1a1a1a] text-white px-4 py-2 hover:bg-[#333]"
+                className={`px-4 py-2 text-white ${
+                  isTypingComplete
+                    ? "bg-[#444] hover:bg-[#555] cursor-pointer"
+                    : "bg-[#111] cursor-not-allowed opacity-50"
+                }`}
+                disabled={!isTypingComplete}
               >
                 Login
               </button>
