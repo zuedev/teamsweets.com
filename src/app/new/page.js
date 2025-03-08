@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
+import Socials from "@/components/Socials";
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -118,8 +119,9 @@ export default () => {
           >
             <source type="video/mp4" src="/background.mp4" />
           </video>
-          <div className="min-h-screen flex items-center justify-center">
+          <div className="min-h-screen flex flex-col items-center justify-center">
             <h1 className="text-[12vw] font-bold">teamsweets.com</h1>
+            <Socials />
           </div>
         </>
       )}
