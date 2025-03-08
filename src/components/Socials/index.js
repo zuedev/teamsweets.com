@@ -35,7 +35,7 @@ export default () => {
         <Link
           href={social.href}
           key={social.title}
-          className="transform hover:scale-125 transition-transform"
+          className="transform hover:scale-110 transition-transform"
         >
           <img
             src={`${social.icon}`}
