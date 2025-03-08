@@ -117,7 +117,7 @@ export default () => {
               zIndex: "-1",
             }}
           >
-            <source type="video/mp4" src="/videos/laying_legacy_plus.mp4" />
+            <source type="video/mp4" src="/videos/laying_legacy.mp4" />
           </video>
           <div className="min-h-screen flex flex-col items-center justify-center">
             <h1 className="text-[12vw] font-bold">teamsweets.com</h1>
