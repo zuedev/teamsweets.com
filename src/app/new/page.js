@@ -55,6 +55,9 @@ export default () => {
 
   const handleOpen = () => {
     setIsOpen(true);
+
+    const audio = new Audio("/keyboardClick.mp3");
+    audio.play();
   };
 
   return (
