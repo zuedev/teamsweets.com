@@ -1,4 +1,4 @@
-<img src="./public/favicon.png" width="50" height="50"/>
+<img src="./public/sweet.png" width="50" height="50"/>
 
 # teamsweets.com
 
