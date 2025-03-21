@@ -78,7 +78,7 @@ export default () => {
         <>
           <div className="min-h-screen flex items-center justify-center">
             <form className="flex flex-col gap-4">
-              <img src="/sweet.png" className="w-20 h-20 mx-auto" />
+              <img src="/images/sweet.png" className="w-20 h-20 mx-auto" />
               <input
                 type="text"
                 placeholder="Username"
