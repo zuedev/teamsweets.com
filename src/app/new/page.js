@@ -3,12 +3,19 @@
 import { useState, useEffect } from "react";
 import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
 import Socials from "@/components/Socials";
+import ChannelLiveEmbed from "@/components/ChannelLiveEmbed";
+import { useSearchParams } from "next/navigation";
 
 export default () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const searchParams = useSearchParams();
+
+  const [isOpen, setIsOpen] = useState(searchParams.has("skip") ? true : false);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,9 +126,67 @@ export default () => {
           >
             <source type="video/mp4" src="/videos/laying_legacy.mp4" />
           </video>
-          <div className="min-h-screen flex flex-col items-center justify-center">
-            <h1 className="text-[12vw] font-bold">teamsweets.com</h1>
-            <Socials />
+
+          <audio autoPlay loop muted={isMuted}>
+            <source src="/sounds/song_weow.wav" type="audio/wav" />
+          </audio>
+
+          <button
+            onClick={() => setIsMuted(!isMuted)}
+            className="fixed top-0 left-0 text-4xl p-2 hover:scale-125 transition-transform"
+          >
+            {!isMuted ? "🔈" : "🔇"}
+          </button>
+
+          <div>
+            <div className="min-h-screen flex flex-col items-center justify-center gap-8">
+              <h1 className="text-[12vw] font-bold leading-none">
+                teamsweets.com
+              </h1>
+              <Socials />
+              <ChannelLiveEmbed
+                channel={"zuedev"}
+                width={640}
+                height={360}
+                muted
+              />
+            </div>
+            <div className="absolute bottom-0 w-full">
+              <p className="text-2xl bg-[#fe00b1] text-black dark:bg-[#741bff] dark:text-white mx-auto w-fit p-2">
+                ↓ Scroll for more ↓
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-[#fe00b1] text-black dark:bg-[#741bff] dark:text-white min-h-screen flex flex-col items-center justify-center p-16 gap-16">
+            <h1 className="text-4xl font-bold">Get to Know Sweets</h1>
+
+            <p className="text-2xl">
+              My name is Sweets. I am variety streamer, and full-time college
+              student and model. In 2021, I started streaming on Twitch and have
+              been able to continually successfully grow my platform on all
+              fronts. As a full-time college student with a passion for gaming
+              and helping others, I've created a unique space where
+              entertainment meets productivity.
+            </p>
+            <p className="text-2xl">
+              I'm all about variety when it comes to gaming. From RPGs to FPS
+              and everything in between, I love exploring different genres and
+              sharing the experience with my awesome community. But that's not
+              all – I also host productivity and co-working study streams,
+              perfect for fellow students or anyone looking to boost their focus
+              and get things done.
+            </p>
+            <p className="text-2xl">
+              When I'm not hitting the books or streaming, I work as a model,
+              bringing creativity and style to everything I do. I believe in
+              using my platform for good, which is why I regularly organize
+              charity streams to support causes close to my heart.
+            </p>
+            <p className="text-2xl">
+              Whether you're here for the gameplay, the study sessions, or just
+              to hang out, there's a place for you in our vibrant community.
+            </p>
           </div>
         </>
       )}
