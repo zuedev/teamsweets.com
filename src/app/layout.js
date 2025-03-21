@@ -12,13 +12,13 @@ export const metadata = {
 
 export default ({ children }) => {
   return (
-    <Suspense>
-      <html lang="en" className="bg-black text-white">
-        <Head>
-          <link rel="preload" href="/videos/laying_legacy.mp4" as="video" />
-        </Head>
+    <html lang="en" className="bg-black text-white">
+      <Head>
+        <link rel="preload" href="/videos/laying_legacy.mp4" as="video" />
+      </Head>
+      <Suspense>
         <body className="min-h-screen">{children}</body>
-      </html>
-    </Suspense>
+      </Suspense>
+    </html>
   );
 };
