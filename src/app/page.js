@@ -24,13 +24,7 @@ const Music = () => {
     }
   }, []);
 
-  const sources = ["/sounds/song_weow.wav", "/sounds/song_cyberfixer.wav"];
-
-  // shuffle sources
-  for (let i = sources.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [sources[i], sources[j]] = [sources[j], sources[i]];
-  }
+  const sources = ["/sounds/song_cyberfixer.wav", "/sounds/song_weow.wav"];
 
   return (
     <>
