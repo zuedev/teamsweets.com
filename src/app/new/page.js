@@ -18,8 +18,6 @@ const Music = () => {
 
       for (let i = 0; i < 100; i++) {
         setTimeout(() => {
-          console.log(i, (i / 100) * maxVolume);
-
           ref.current.volume = (i / 100) * maxVolume;
         }, i * 100);
       }
