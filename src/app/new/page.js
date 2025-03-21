@@ -1,10 +1,56 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
 import Socials from "@/components/Socials";
 import ChannelLiveEmbed from "@/components/ChannelLiveEmbed";
 import { useSearchParams } from "next/navigation";
+
+const Music = () => {
+  const ref = useRef();
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = 0;
+
+      let maxVolume = 0.5;
+
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          console.log(i, (i / 100) * maxVolume);
+
+          ref.current.volume = (i / 100) * maxVolume;
+        }, i * 100);
+      }
+    }
+  }, []);
+
+  const sources = ["/sounds/song_weow.wav", "/sounds/song_cyberfixer.wav"];
+
+  // shuffle sources
+  for (let i = sources.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [sources[i], sources[j]] = [sources[j], sources[i]];
+  }
+
+  return (
+    <>
+      <audio ref={ref} autoPlay loop muted={isMuted}>
+        {sources.map((src, i) => (
+          <source key={i} type="audio/wav" src={src} />
+        ))}
+      </audio>
+
+      <button
+        onClick={() => setIsMuted(!isMuted)}
+        className="fixed top-0 left-0 text-4xl p-2 hover:scale-125 transition-transform"
+      >
+        {!isMuted ? "🔈" : "🔇"}
+      </button>
+    </>
+  );
+};
 
 export default () => {
   const searchParams = useSearchParams();
@@ -14,8 +60,6 @@ export default () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -127,16 +171,7 @@ export default () => {
             <source type="video/mp4" src="/videos/laying_legacy.mp4" />
           </video>
 
-          <audio autoPlay loop muted={isMuted}>
-            <source src="/sounds/song_weow.wav" type="audio/wav" />
-          </audio>
-
-          <button
-            onClick={() => setIsMuted(!isMuted)}
-            className="fixed top-0 left-0 text-4xl p-2 hover:scale-125 transition-transform"
-          >
-            {!isMuted ? "🔈" : "🔇"}
-          </button>
+          <Music />
 
           <div>
             <div className="min-h-screen flex flex-col items-center justify-center gap-8">
