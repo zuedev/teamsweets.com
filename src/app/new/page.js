@@ -180,7 +180,7 @@ export default () => {
               </h1>
               <Socials />
               <ChannelLiveEmbed
-                channel={"zuedev"}
+                channel={searchParams.get("channel") || "vtsweets"}
                 width={640}
                 height={360}
                 muted
