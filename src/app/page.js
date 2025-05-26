@@ -179,13 +179,13 @@ export default () => {
               />
             </div>
             <div className="absolute bottom-0 w-full">
-              <p className="text-2xl bg-[#fe00b1] text-black dark:bg-[#741bff] dark:text-white mx-auto w-fit p-2">
+              <p className="text-2xl bg-[#fe00b1] text-white mx-auto w-fit p-2">
                 ↓ Scroll for more ↓
               </p>
             </div>
           </div>
 
-          <div className="bg-[#fe00b1] text-black dark:bg-[#741bff] dark:text-white min-h-screen flex flex-col items-center justify-center p-16 gap-16">
+          <div className="bg-gradient-to-b from-[#fe00b1] to-[#741bff] text-black dark:text-white min-h-screen flex flex-col items-center justify-center p-16 gap-16">
             <h1 className="text-4xl font-bold">Get to Know Sweets</h1>
 
             <p className="text-2xl">
