@@ -3,9 +3,19 @@ import Link from "next/link";
 export default () => {
   const socials = [
     {
-      href: "/tip",
-      icon: "https://cdn.simpleicons.org/paypal/white",
-      title: "PayPal",
+      href: "/twitter",
+      icon: "https://cdn.simpleicons.org/x/white",
+      title: "X/Twitter",
+    },
+    {
+      href: "/bluesky",
+      icon: "https://cdn.simpleicons.org/bluesky/white",
+      title: "BlueSky",
+    },
+    {
+      href: "/twitch",
+      icon: "https://cdn.simpleicons.org/twitch/white",
+      title: "Twitch",
     },
     {
       href: "/tiktok",
@@ -13,20 +23,21 @@ export default () => {
       title: "TikTok",
     },
     {
-      href: "/twitter",
-      icon: "https://cdn.simpleicons.org/x/white",
-      title: "X/Twitter",
-    },
-    {
-      href: "/reddit",
-      icon: "https://cdn.simpleicons.org/reddit/white",
-      title: "Reddit",
-    },
-    {
       href: "/instagram",
       icon: "https://cdn.simpleicons.org/instagram/white",
       title: "Instagram",
     },
+    {
+      href: "/youtube",
+      icon: "https://cdn.simpleicons.org/youtube/white",
+      title: "YouTube",
+    },
+    {
+      href: "/throne",
+      icon: "/throne.png",
+      title: "Throne",
+      classes: "grayscale brightness-[100]",
+    }
   ];
 
   return (
@@ -39,7 +50,7 @@ export default () => {
         >
           <img
             src={`${social.icon}`}
-            className="h-[8vw] w-[8vw] object-contain"
+            className={`h-[8vw] w-[8vw] object-contain ${social.classes}`}
             alt={social.title}
             title={social.title}
           />
