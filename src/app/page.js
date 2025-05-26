@@ -168,7 +168,7 @@ export default () => {
           <div>
             <div className="min-h-screen flex flex-col items-center justify-center gap-8">
               <h1 className="text-[12vw] font-bold leading-none">
-                teamsweets.com
+                Sweets
               </h1>
               <Socials />
               <ChannelLiveEmbed
