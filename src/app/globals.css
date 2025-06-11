@@ -5,9 +5,19 @@
 
 /* configure fonts */
 @theme {
-  --font-titles: "Sedgwick Ave";
-  --font-body: "Space Grotesk";
-  --font-mono: "Space Mono";
+  /* setup imported fonts */
+  --font-sedgwick-ave: "Sedgwick Ave";
+  --font-space-grotesk: "Space Grotesk";
+  --font-space-mono: "Space Mono";
+
+  /* assign imported fonts to Tailwind's font families */
+  --font-sans: var(--font-space-grotesk);
+  --font-serif: var(--font-space-grotesk);
+  --font-mono: var(--font-space-mono);
+
+  /* custom font defs */
+  --font-titles: var(--font-sedgwick-ave);
+  --font-body: var(--font-space-grotesk);
 }
 
 h1, h2, h3, h4, h5, h6 {
