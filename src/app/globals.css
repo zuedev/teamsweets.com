@@ -1,9 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Jersey+20&display=swap");
+/* gotta do imports at the top for tailwind reasons */
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import "tailwindcss";
 
+/* configure fonts */
 @theme {
-  --font-jersey: "Jersey 20";
+  --font-titles: "Sedgwick Ave";
+  --font-body: "Space Grotesk";
+  --font-mono: "Space Mono";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-titles);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+code, pre {
+  font-family: var(--font-mono);
 }
 
 :root {
