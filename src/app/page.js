@@ -36,7 +36,7 @@ const Music = () => {
 
       <button
         onClick={() => setIsMuted(!isMuted)}
-        className="fixed top-0 left-0 text-4xl p-2 hover:scale-125 transition-transform"
+        className="fixed top-0 right-0 text-4xl p-2 hover:scale-125 transition-transform"
       >
         {!isMuted ? "🔈" : "🔇"}
       </button>
