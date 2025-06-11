@@ -165,16 +165,16 @@ export default () => {
 
           <Music />
 
-          <a className="bg-black text-white fixed left-[-33] top-1/2 transform rotate-90 px-4 py-2"
-            href="mailto:hello@teamsweets.com">
+          <a
+            className="bg-black text-white fixed left-[-40] top-1/2 transform rotate-90 px-4 py-2 font-mono"
+            href="mailto:hello@teamsweets.com"
+          >
             Email me!
           </a>
 
           <div>
             <div className="min-h-screen flex flex-col items-center justify-center gap-8">
-              <h1 className="text-[12vw] font-bold leading-none">
-                Sweets
-              </h1>
+              <h1 className="text-[12vw] font-bold leading-none">Sweets</h1>
               <Socials />
               <ChannelLiveEmbed
                 channel={searchParams.get("channel") || "vtsweets"}
@@ -194,17 +194,45 @@ export default () => {
             <h1 className="text-4xl font-bold">Get to Know Sweets</h1>
 
             <p className="text-2xl">
-              Hey there! I'm Sweets, a proud Guyanese and African American VTuber, variety streamer, full-time college student, and model. Since 2021, I've been streaming on Twitch, building a fun, safe, and welcoming space where everyone can be themselves and connect over shared interests.
+              Hey there! I'm Sweets, a proud Guyanese and African American
+              VTuber, variety streamer, full-time college student, and model.
+              Since 2021, I've been streaming on Twitch, building a fun, safe,
+              and welcoming space where everyone can be themselves and connect
+              over shared interests.
             </p>
             <p className="text-2xl">
-              Gaming is my passion, and I love diving into all kinds of genres—from intense FPS battles to immersive RPG adventures, with a recent sweet spot for JRPGs! Whether I'm playing on my PlayStation or PC, I'm all about sharing those exciting gaming moments with my awesome community.
+              Gaming is my passion, and I love diving into all kinds of
+              genres—from intense FPS battles to immersive RPG adventures, with
+              a recent sweet spot for JRPGs! Whether I'm playing on my
+              PlayStation or PC, I'm all about sharing those exciting gaming
+              moments with my awesome community.
             </p>
             <p className="text-2xl">
-              But that's not all—I also host productivity and co-working study streams, perfect for fellow students or anyone looking to boost focus and get things done. Balancing college life (I'm working on a dual-degree in PR and Journalism!) with streaming and modeling keeps me busy, but it's all about creating a unique space where entertainment meets productivity.
+              But that's not all—I also host productivity and co-working study
+              streams, perfect for fellow students or anyone looking to boost
+              focus and get things done. Balancing college life (I'm working on
+              a dual-degree in PR and Journalism!) with streaming and modeling
+              keeps me busy, but it's all about creating a unique space where
+              entertainment meets productivity.
             </p>
-            <p className="text-2xl">Outside the digital world, I'm a model who loves bringing creativity and style to everything I do. I'm also passionate about giving back, regularly organizing charity streams to support causes close to my heart.</p>
-            <p className="text-2xl">And yes, I'm totally obsessed with candy and sweets—hence the name! (I have a serious sweet tooth… whoops!) When I'm not gaming or studying, I enjoy meeting new people, and I can't wait to connect with you and grow this community into something truly special.</p>
-            <p className="text-2xl">Whether you're here for the gameplay, the study vibes, or just to hang out, you've found your spot. Welcome to the world of Sweets! 🍬🎮✨</p>
+            <p className="text-2xl">
+              Outside the digital world, I'm a model who loves bringing
+              creativity and style to everything I do. I'm also passionate about
+              giving back, regularly organizing charity streams to support
+              causes close to my heart.
+            </p>
+            <p className="text-2xl">
+              And yes, I'm totally obsessed with candy and sweets—hence the
+              name! (I have a serious sweet tooth… whoops!) When I'm not gaming
+              or studying, I enjoy meeting new people, and I can't wait to
+              connect with you and grow this community into something truly
+              special.
+            </p>
+            <p className="text-2xl">
+              Whether you're here for the gameplay, the study vibes, or just to
+              hang out, you've found your spot. Welcome to the world of Sweets!
+              🍬🎮✨
+            </p>
           </div>
         </>
       )}
