@@ -5,7 +5,7 @@ import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
 import Socials from "@/components/Socials";
 import ChannelLiveEmbed from "@/components/ChannelLiveEmbed";
 import { useSearchParams } from "next/navigation";
-import SideMenu from "@/components/SideMenu";
+// import SideMenu from "@/components/SideMenu";
 
 const Music = () => {
   const ref = useRef();
@@ -164,7 +164,7 @@ export default () => {
             <source type="video/mp4" src="/videos/laying_legacy.mp4" />
           </video>
 
-          <SideMenu />
+          {/* <SideMenu /> */}
 
           <Music />
 
