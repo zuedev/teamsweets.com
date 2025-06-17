@@ -41,7 +41,7 @@ export default () => {
   ];
 
   return (
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-row justify-between gap-4">
       {socials.map((social) => (
         <Link
           href={social.href}
@@ -50,7 +50,7 @@ export default () => {
         >
           <img
             src={`${social.icon}`}
-            className={`h-8 w-8 object-contain ${social.classes}`}
+            className={`h-[8vw] w-[8vw] object-contain ${social.classes}`}
             alt={social.title}
             title={social.title}
           />

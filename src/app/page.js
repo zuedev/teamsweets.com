@@ -1,100 +1,192 @@
-import Subpages from "./Subpages.js";
-import fs from "fs";
-import Gallery from "./Gallery.js";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
 import Socials from "./Socials.js";
+import { useSearchParams } from "next/navigation";
 
-export default () => {
-  const galleryImages = fs
-    .readdirSync("public/gallery")
-    .map((filename) => `/gallery/${filename}`)
-    .filter((filename) => /\.(jpg|jpeg|png|gif)$/i.test(filename))
-    .sort(() => Math.random() - 0.5);
+const Music = () => {
+  const ref = useRef();
+  const [isMuted, setIsMuted] = useState(false);
 
-  const subpages = [
-    {
-      name: "Home",
-      content: (
-        <div className="flex flex-col md:flex-row gap-4">
-          <img src="/pfp.png" className="w-48 h-48" />
-          <div className="flex flex-col justify-center space-y-4">
-            <h2 className="text-3xl font-bold">Welcome to the Sweet Escape!</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <Socials />
-          </div>
-        </div>
-      ),
-    },
-    {
-      name: "About",
-      content: (
-        <div className="space-y-4">
-          <h2 className="text-3xl font-bold">About Me</h2>
-          <p>
-            Hey there! I'm Sweets, a proud Guyanese and African American VTuber,
-            variety streamer, full-time college student, and model. Since 2021,
-            I've been streaming on Twitch, building a fun, safe, and welcoming
-            space where everyone can be themselves and connect over shared
-            interests.
-          </p>
-          <p>
-            Gaming is my passion, and I love diving into all kinds of
-            genres—from intense FPS battles to immersive RPG adventures, with a
-            recent sweet spot for JRPGs! Whether I'm playing on my PlayStation
-            or PC, I'm all about sharing those exciting gaming moments with my
-            awesome community.
-          </p>
-          <p>
-            But that's not all—I also host productivity and co-working study
-            streams, perfect for fellow students or anyone looking to boost
-            focus and get things done. Balancing college life (I'm working on a
-            dual-degree in PR and Journalism!) with streaming and modeling keeps
-            me busy, but it's all about creating a unique space where
-            entertainment meets productivity.
-          </p>
-          <p>
-            Outside the digital world, I'm a model who loves bringing creativity
-            and style to everything I do. I'm also passionate about giving back,
-            regularly organizing charity streams to support causes close to my
-            heart.
-          </p>
-          <p>
-            And yes, I'm totally obsessed with candy and sweets—hence the name!
-            (I have a serious sweet tooth… whoops!) When I'm not gaming or
-            studying, I enjoy meeting new people, and I can't wait to connect
-            with you and grow this community into something truly special.
-          </p>
-          <p>
-            Whether you're here for the gameplay, the study vibes, or just to
-            hang out, you've found your spot. Welcome to the world of Sweets!
-            🍬🎮✨
-          </p>
-        </div>
-      ),
-    },
-    {
-      name: "Gallery",
-      content: <Gallery galleryImages={galleryImages} />,
-    },
-  ];
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = 0;
+
+      let maxVolume = 0.5;
+
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          ref.current.volume = (i / 100) * maxVolume;
+        }, i * 100);
+      }
+    }
+  }, []);
+
+  const sources = ["/song_cyberfixer.wav", "/song_weow.wav"];
 
   return (
     <>
-      <div className="bg-[url('/the-sweet-escape.png')] bg-cover bg-center min-h-screen animate-fade-in fixed inset-0 -z-10" />
-      <div>
-        <div className="flex flex-col min-h-screen animate-backdrop-blur-delayed-1s relative">
-          <div className="max-w-4xl mx-auto mt-[10vh] p-4">
-            <h1 className="text-[100px] pt-[1.5rem] leading-[0.7] font-bold animate-fade-in-delayed-2s text-center sweets-text-gradient">
-              Sweets
-            </h1>
-            <Subpages subpages={subpages} />
+      <audio ref={ref} autoPlay loop muted={isMuted}>
+        {sources.map((src, i) => (
+          <source key={i} type="audio/wav" src={src} />
+        ))}
+      </audio>
+
+      <button
+        onClick={() => setIsMuted(!isMuted)}
+        className="fixed top-0 right-0 text-4xl p-2 hover:scale-125 transition-transform"
+      >
+        {!isMuted ? "🔈" : "🔇"}
+      </button>
+    </>
+  );
+};
+
+export default () => {
+  const searchParams = useSearchParams();
+
+  const [isOpen, setIsOpen] = useState(searchParams.has("skip") ? true : false);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const targetUsername = "user" + (await getFingerprint()).slice(0, 4);
+      const targetPassword = "password";
+
+      const typeUsername = () => {
+        return new Promise((resolve) => {
+          const typingUsername = setInterval(() => {
+            setUsername((prev) => {
+              if (prev === targetUsername) {
+                clearInterval(typingUsername);
+                resolve();
+                return prev;
+              }
+              return prev + targetUsername.charAt(prev.length);
+            });
+          }, 50);
+        });
+      };
+
+      const typePassword = () => {
+        return new Promise((resolve) => {
+          const typingPassword = setInterval(() => {
+            setPassword((prev) => {
+              if (prev === targetPassword) {
+                clearInterval(typingPassword);
+                resolve();
+                return prev;
+              }
+              return prev + targetPassword.charAt(prev.length);
+            });
+          }, 50);
+        });
+      };
+
+      await typeUsername();
+      await typePassword();
+      setIsTypingComplete(true);
+    };
+
+    fetchData();
+
+    return () => {
+      clearInterval(typeUsername);
+      clearInterval(typePassword);
+    };
+  }, []);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+
+    const audio = new Audio("/keyboardClick.mp3");
+    audio.play();
+  };
+
+  return (
+    <>
+      {!isOpen ? (
+        <>
+          <div className="min-h-screen flex items-center justify-center">
+            <form className="flex flex-col gap-4">
+              <img src="/sweet.png" className="w-20 h-20 mx-auto" />
+              <input
+                type="text"
+                placeholder="Username"
+                className="bg-[#1a1a1a] text-white px-4 py-2"
+                value={username}
+                disabled
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="bg-[#1a1a1a] text-white px-4 py-2"
+                value={password}
+                disabled
+              />
+              <button
+                onClick={handleOpen}
+                className={`px-4 py-2 text-white ${
+                  isTypingComplete
+                    ? "bg-[#444] hover:bg-[#555] cursor-pointer"
+                    : "bg-[#111] cursor-not-allowed opacity-50"
+                }`}
+                disabled={!isTypingComplete}
+              >
+                Login
+              </button>
+            </form>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <video
+            playsInline
+            autoPlay
+            muted
+            loop
+            style={{
+              objectFit: "cover",
+              width: "100vw",
+              height: "100vh",
+              position: "fixed",
+              top: "0",
+              left: "0",
+              zIndex: "-1",
+            }}
+          >
+            <source type="video/mp4" src="/laying_legacy.mp4" />
+          </video>
+
+          <Music />
+
+          <a
+            className="bg-black text-white fixed left-[-40px] top-1/2 transform rotate-90 px-4 py-2 font-mono"
+            href="mailto:hello@teamsweets.com"
+          >
+            Email me!
+          </a>
+
+          <div>
+            <div className="min-h-screen flex flex-col items-center justify-center gap-8">
+              <h1 className="text-[12vw] font-bold leading-none sweets-text-gradient pt-[15px]">
+                Sweets
+              </h1>
+              <a
+                className="text-2xl px-6 py-2 bg-[#000] hover:bg-yellow-400 hover:text-black text-white transition-colors duration-500"
+                onClick={() => (window.location.href = "/card")}
+              >
+                Enter the Sweet Escape
+              </a>
+              {/* <Socials /> */}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
