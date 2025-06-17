@@ -7,7 +7,8 @@
     "dev:turbopack": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "next build && mv cloudflare/* out/"
   },
   "dependencies": {
     "react": "^19.0.0",
