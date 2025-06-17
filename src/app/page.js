@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
-import Socials from "./Socials.js";
-import { useSearchParams } from "next/navigation";
 
 const Music = () => {
   const ref = useRef();
@@ -44,9 +42,7 @@ const Music = () => {
 };
 
 export default () => {
-  const searchParams = useSearchParams();
-
-  const [isOpen, setIsOpen] = useState(searchParams.has("skip") ? true : false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -101,8 +97,6 @@ export default () => {
   }, []);
 
   const handleOpen = () => {
-    setIsOpen(true);
-
     const audio = new Audio("/keyboardClick.mp3");
     audio.play();
   };
@@ -182,7 +176,6 @@ export default () => {
               >
                 Enter the Sweet Escape
               </a>
-              {/* <Socials /> */}
             </div>
           </div>
         </>
