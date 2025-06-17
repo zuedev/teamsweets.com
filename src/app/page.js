@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { getFingerprint } from "@thumbmarkjs/thumbmarkjs";
+import Socials from "./Socials.js";
+import { useSearchParams } from "next/navigation";
 
 const Music = () => {
   const ref = useRef();
@@ -97,6 +99,8 @@ export default () => {
   }, []);
 
   const handleOpen = () => {
+    setIsOpen(true);
+
     const audio = new Audio("/keyboardClick.mp3");
     audio.play();
   };
@@ -176,6 +180,7 @@ export default () => {
               >
                 Enter the Sweet Escape
               </a>
+              {/* <Socials /> */}
             </div>
           </div>
         </>
