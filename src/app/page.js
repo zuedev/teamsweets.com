@@ -1,103 +1,99 @@
-import Image from "next/image";
+import Subpages from "./Subpages.js";
+import fs from "fs";
+import Gallery from "./Gallery.js";
+import Socials from "./Socials.js";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default () => {
+  const galleryImages = fs
+    .readdirSync("public/gallery")
+    .map((filename) => `/gallery/${filename}`)
+    .sort(() => Math.random() - 0.5);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const subpages = [
+    {
+      name: "Home",
+      content: (
+        <div className="flex flex-col md:flex-row gap-4">
+          <img src="/pfp.png" className="w-48 h-48" />
+          <div className="flex flex-col justify-center space-y-4">
+            <h2 className="text-3xl font-bold">Welcome to the Sweet Escape!</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <Socials />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      ),
+    },
+    {
+      name: "About",
+      content: (
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold">About Me</h2>
+          <p>
+            Hey there! I'm Sweets, a proud Guyanese and African American VTuber,
+            variety streamer, full-time college student, and model. Since 2021,
+            I've been streaming on Twitch, building a fun, safe, and welcoming
+            space where everyone can be themselves and connect over shared
+            interests.
+          </p>
+          <p>
+            Gaming is my passion, and I love diving into all kinds of
+            genres—from intense FPS battles to immersive RPG adventures, with a
+            recent sweet spot for JRPGs! Whether I'm playing on my PlayStation
+            or PC, I'm all about sharing those exciting gaming moments with my
+            awesome community.
+          </p>
+          <p>
+            But that's not all—I also host productivity and co-working study
+            streams, perfect for fellow students or anyone looking to boost
+            focus and get things done. Balancing college life (I'm working on a
+            dual-degree in PR and Journalism!) with streaming and modeling keeps
+            me busy, but it's all about creating a unique space where
+            entertainment meets productivity.
+          </p>
+          <p>
+            Outside the digital world, I'm a model who loves bringing creativity
+            and style to everything I do. I'm also passionate about giving back,
+            regularly organizing charity streams to support causes close to my
+            heart.
+          </p>
+          <p>
+            And yes, I'm totally obsessed with candy and sweets—hence the name!
+            (I have a serious sweet tooth… whoops!) When I'm not gaming or
+            studying, I enjoy meeting new people, and I can't wait to connect
+            with you and grow this community into something truly special.
+          </p>
+          <p>
+            Whether you're here for the gameplay, the study vibes, or just to
+            hang out, you've found your spot. Welcome to the world of Sweets!
+            🍬🎮✨
+          </p>
+        </div>
+      ),
+    },
+    {
+      name: "Gallery",
+      content: <Gallery galleryImages={galleryImages} />,
+    },
+  ];
+
+  return (
+    <>
+      <div className="bg-[url('/the-sweet-escape.png')] bg-cover bg-center min-h-screen animate-fade-in fixed inset-0 -z-10" />
+      <div>
+        <div className="flex flex-col min-h-screen animate-backdrop-blur-delayed-1s relative">
+          <div className="max-w-4xl mx-auto mt-[10vh] p-4">
+            <h1 className="text-[100px] pt-[1.5rem] leading-[0.7] font-bold animate-fade-in-delayed-2s text-center sweets-text-gradient">
+              Sweets
+            </h1>
+            <Subpages subpages={subpages} />
+          </div>
+        </div>
+      </div>
+    </>
   );
-}
+};
