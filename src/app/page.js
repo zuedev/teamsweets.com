@@ -7,6 +7,7 @@ export default () => {
   const galleryImages = fs
     .readdirSync("public/gallery")
     .map((filename) => `/gallery/${filename}`)
+    .filter((filename) => /\.(jpg|jpeg|png|gif)$/i.test(filename))
     .sort(() => Math.random() - 0.5);
 
   const subpages = [
