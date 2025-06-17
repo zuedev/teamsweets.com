@@ -1,69 +1,26 @@
-/* gotta do imports at the top for tailwind reasons */
-@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 @import "tailwindcss";
 
-/* configure fonts */
-@theme {
-  /* setup imported fonts */
-  --font-sedgwick-ave: "Sedgwick Ave";
-  --font-space-grotesk: "Space Grotesk";
-  --font-space-mono: "Space Mono";
-
-  /* assign imported fonts to Tailwind's font families */
-  --font-sans: var(--font-space-grotesk);
-  --font-serif: var(--font-space-grotesk);
-  --font-mono: var(--font-space-mono);
-
-  /* custom font defs */
-  --font-titles: var(--font-sedgwick-ave);
-  --font-body: var(--font-space-grotesk);
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-titles);
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-  font-family: var(--font-body);
-}
-
-code, pre {
-  font-family: var(--font-mono);
-}
-
-:root {
-  --from: #77b2fd;
-  --via: #6409d3;
-  --to: #cb64e9;
-}
-
-/* hide scrollbar */
-body::-webkit-scrollbar {
-  display: none;
-}
-
-.sweets {
-  background: linear-gradient(
-    45deg,
-    var(--from) 0%,
-    var(--via) 50%,
-    var(--to) 100%
-  );
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* custom cursors */
-* {
-  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="%23FFFFFF"><path d="M18 7c-3 0-5.5-1.5-9 2s-2 6-2 9c0 5 4.1 5.63 6 5 3-1 1-3 4-6s5-1 6-4c.63-1.9 0-6-5-6Z"></path><circle cx="8.2" cy="4" r="2"></circle><circle cx="4" cy="8.2" r="2"></circle><circle cx="14" cy="3" r="2"></circle><circle cx="3" cy="14" r="2"></circle></g></svg>'), auto;
-}
-
-a, button, input, textarea, a img {
-  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="%2300FF00"><path d="M18 7c-3 0-5.5-1.5-9 2s-2 6-2 9c0 5 4.1 5.63 6 5 3-1 1-3 4-6s5-1 6-4c.63-1.9 0-6-5-6Z"></path><circle cx="8.2" cy="4" r="2"></circle><circle cx="4" cy="8.2" r="2"></circle><circle cx="14" cy="3" r="2"></circle><circle cx="3" cy="14" r="2"></circle></g></svg>'), auto;
-}
-
-button:disabled,
-input:disabled {
-  cursor: not-allowed;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
