@@ -1,5 +1,3 @@
-"use client";
-
 export default () => {
   return (
     <>
@@ -35,7 +33,7 @@ export default () => {
           </h1>
           <a
             className="text-2xl px-6 py-2 bg-[#000] hover:bg-yellow-400 hover:text-black text-white transition-colors duration-500"
-            onClick={() => (window.location.href = "/card")}
+            href="/card"
           >
             Enter the Sweet Escape
           </a>
