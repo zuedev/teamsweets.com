@@ -91,6 +91,12 @@ export default () => {
             <h1 className="text-[100px] pt-[1.5rem] leading-[0.7] font-bold animate-fade-in-delayed-2s text-center sweets-text-gradient">
               Sweets
             </h1>
+            <a
+              className="bg-black text-white fixed left-[-40px] top-1/2 transform rotate-90 px-4 py-2 font-mono animate-fade-in-delayed-2s"
+              href="mailto:hello@teamsweets.com"
+            >
+              Email me!
+            </a>
             <Subpages subpages={subpages} />
           </div>
         </div>

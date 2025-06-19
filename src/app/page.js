@@ -19,13 +19,6 @@ export default () => {
         <source type="video/mp4" src="/laying_legacy.mp4" />
       </video>
 
-      <a
-        className="bg-black text-white fixed left-[-40px] top-1/2 transform rotate-90 px-4 py-2 font-mono"
-        href="mailto:hello@teamsweets.com"
-      >
-        Email me!
-      </a>
-
       <div>
         <div className="min-h-screen flex flex-col items-center justify-center gap-8">
           <h1 className="text-[12vw] font-bold leading-none sweets-text-gradient pt-[15px]">
