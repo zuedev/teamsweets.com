@@ -30,7 +30,6 @@ export default () => {
           >
             Enter the Sweet Escape
           </a>
-          {/* <Socials /> */}
         </div>
       </div>
     </>
