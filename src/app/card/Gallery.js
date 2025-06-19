@@ -62,7 +62,7 @@ export default ({ galleryImages }) => {
           id="category-select"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border rounded px-2 py-1"
+          className="border rounded px-2 py-1 text-black bg-white"
         >
           <option value="All">All</option>
           {categories.map((cat) => (
