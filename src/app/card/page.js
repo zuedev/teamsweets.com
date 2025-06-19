@@ -4,11 +4,23 @@ import Gallery from "./Gallery.js";
 import Socials from "./Socials.js";
 
 export default () => {
-  const galleryImages = fs
-    .readdirSync("public/gallery")
-    .map((filename) => `/gallery/${filename}`)
-    .filter((filename) => /\.(jpg|jpeg|png|gif)$/i.test(filename))
-    .sort(() => Math.random() - 0.5);
+  function getGalleryImages(dir, base = "/gallery") {
+    let results = [];
+    fs.readdirSync(dir, { withFileTypes: true }).forEach((entry) => {
+      const fullPath = `${dir}/${entry.name}`;
+      const relPath = `${base}/${entry.name}`;
+      if (entry.isDirectory()) {
+        results = results.concat(getGalleryImages(fullPath, relPath));
+      } else if (/\.(jpg|jpeg|png|gif)$/i.test(entry.name)) {
+        results.push(relPath);
+      }
+    });
+    return results;
+  }
+
+  const galleryImages = getGalleryImages("public/gallery").sort(
+    () => Math.random() - 0.5
+  );
 
   const subpages = [
     {
