@@ -120,9 +120,7 @@ export default ({ galleryImages }) => {
                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <p className="text-sm font-medium capitalize">
-                    Artist: {artist.replace(/_/g, " ")}
-                  </p>
+                  <p className="text-sm font-medium">Artist: {artist}</p>
                   <p className="text-xs">Category: {category}</p>
                 </div>
               </a>
