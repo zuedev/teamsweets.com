@@ -40,8 +40,8 @@ function getGalleryImages(dir) {
           });
           if (failures.length > 0) {
             throw new Error(
-              `The following image paths do not match the required format:\n` +
-                failures.join("\n")
+              `The following image paths do not match the required format:\n~/` +
+                failures.join("\n~/")
             );
           }
         },
