@@ -23,17 +23,35 @@ function getGalleryImages(dir) {
   return results;
 }
 
-describe("Gallery image path format", () => {
-  let galleryImages = [];
-
-  beforeAll(() => {
-    galleryImages = getGalleryImages(GALLERY_ROOT);
-  });
-
-  test("all images should match the required format", () => {
-    const regex = /^gallery\/[^\/]+\/[^\/]+\/[^\/]+\.[a-zA-Z0-9]+$/;
-    galleryImages.forEach((imagePath) => {
-      expect(imagePath).toMatch(regex);
+[
+  {
+    description: "Gallery image path format",
+    tests: [
+      {
+        name: "all images should match the required format",
+        fn: () => {
+          const galleryImages = getGalleryImages(GALLERY_ROOT);
+          const regex = /^gallery\/[^\/]+\/[^\/]+\/[^\/]+\.[a-zA-Z0-9]+$/;
+          const failures = [];
+          galleryImages.forEach((imagePath) => {
+            if (!regex.test(imagePath)) {
+              failures.push(imagePath);
+            }
+          });
+          if (failures.length > 0) {
+            throw new Error(
+              `The following image paths do not match the required format:\n` +
+                failures.join("\n")
+            );
+          }
+        },
+      },
+    ],
+  },
+].forEach(({ description, tests }) => {
+  describe(description, () => {
+    tests.forEach(({ name, fn }) => {
+      test(name, fn);
     });
   });
 });
