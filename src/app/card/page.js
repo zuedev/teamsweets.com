@@ -64,7 +64,7 @@ export default () => {
           <h2 className="text-3xl font-bold">About Me</h2>
           <div className="space-y-4">
             <p>
-              Hey there! I'm Sweets, a proud Guyanese and African American
+              Hey there! I'm Sweets, a proud Guyanese and African-American
               VTuber, variety streamer, full-time college student, and model.
               Since 2021, I've been streaming on Twitch, building a fun, safe,
               and welcoming space where everyone can be themselves and connect
@@ -110,13 +110,17 @@ export default () => {
                 title: "Affiliations",
                 content: (
                   <ul className="list-disc pl-5">
-                    <li>Ubisoft, Yellow Brick Games and Epic partner</li>
+                    <li>
+                      Ubisoft, Yellow Brick Games, PlanetPlay, and Epic partner
+                    </li>
+                    <li>Iriam Early Access Streamer</li>
                     <li>Waifu Wares & Crunchyroll affiliate</li>
                     <li>Official creator for Infinity Nikki & Once Human</li>
                     <li>
                       Member of Disabled Content Creators Collective, Twitch's
-                      black Unity Guild, Twitch's Women's Guild, Vtuber Creator
-                      Club, & Twitch's Highlight Disabled Talent Collection
+                      Black Unity Guild, Twitch's Women's Guild, Vtuber Creator
+                      Club, Twitch's Co-working & Coding Club, & Twitch's
+                      Highlight Disabled Talent Collection
                     </li>
                   </ul>
                 ),
