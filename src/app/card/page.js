@@ -47,7 +47,7 @@ export default () => {
                   Latest Twitch VOD
                 </h3>
                 <iframe
-                  src={`https://player.twitch.tv/?video=${latestTwitchVodId}&parent=localhost&parent=teamsweets.com&autoplay=false`}
+                  src={`https://player.twitch.tv/?video=${latestTwitchVodId}&parent=localhost&parent=beta.teamsweets-com.pages.dev&parent=teamsweets.com&autoplay=false`}
                 ></iframe>
               </div>
             </div>
