@@ -40,11 +40,6 @@ export default () => {
                 </h3>
                 <iframe
                   src={`https://www.youtube.com/embed/${latestYouTubeVideoId}`}
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
                 ></iframe>
               </div>
               <div className="space-y-2">
@@ -53,9 +48,6 @@ export default () => {
                 </h3>
                 <iframe
                   src={`https://player.twitch.tv/?video=${latestTwitchVodId}&parent=localhost&parent=teamsweets.com&autoplay=false`}
-                  frameborder="0"
-                  allowfullscreen="true"
-                  scrolling="no"
                 ></iframe>
               </div>
             </div>
