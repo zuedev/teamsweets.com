@@ -4,6 +4,9 @@ import Gallery from "./Gallery.js";
 import Socials from "./Socials.js";
 
 export default () => {
+  const latestYouTubeVideoId = "-z5jxRbk3R4";
+  const latestTwitchVodId = "2487659351";
+
   function getGalleryImages(dir, base = "/gallery") {
     let results = [];
     fs.readdirSync(dir, { withFileTypes: true }).forEach((entry) => {
@@ -36,7 +39,7 @@ export default () => {
                   Latest YouTube Video
                 </h3>
                 <iframe
-                  src="https://www.youtube.com/embed/-z5jxRbk3R4?si=WqoUMVwYIGgTcJ71"
+                  src={`https://www.youtube.com/embed/${latestYouTubeVideoId}`}
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -49,7 +52,7 @@ export default () => {
                   Latest Twitch VOD
                 </h3>
                 <iframe
-                  src="https://player.twitch.tv/?video=2487659351&parent=localhost&parent=teamsweets.com&autoplay=false"
+                  src={`https://player.twitch.tv/?video=${latestTwitchVodId}&parent=localhost&parent=teamsweets.com&autoplay=false`}
                   frameborder="0"
                   allowfullscreen="true"
                   scrolling="no"
