@@ -2,9 +2,9 @@ import Subpages from "./Subpages.js";
 import fs from "fs";
 import Gallery from "./Gallery.js";
 import Socials from "./Socials.js";
+import LatestYouTubeVideo from "./LatestYouTubeVideo.js";
 
 export default () => {
-  let latestYouTubeVideoId = "-z5jxRbk3R4";
   const latestTwitchVodId = "2487659351";
 
   function getGalleryImages(dir, base = "/gallery") {
@@ -38,9 +38,7 @@ export default () => {
                 <h3 className="font-mono text-lg font-semibold">
                   Latest YouTube Video
                 </h3>
-                <iframe
-                  src={`https://www.youtube.com/embed/${latestYouTubeVideoId}`}
-                ></iframe>
+                <LatestYouTubeVideo />
               </div>
               <div className="space-y-2">
                 <h3 className="font-mono text-lg font-semibold">
