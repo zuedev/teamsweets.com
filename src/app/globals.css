@@ -21,6 +21,10 @@
   --font-body: var(--font-space-grotesk);
 }
 
+.font-mono {
+  font-family: var(--font-mono);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-titles);
 }

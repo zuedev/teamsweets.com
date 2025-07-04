@@ -27,16 +27,39 @@ export default () => {
       name: "Home",
       content: (
         <div className="flex flex-col md:flex-row gap-4">
-          <img src="/pfp.png" className="w-48 h-48" />
+          <img src="/pfp.png" className="w-48 object-cover" alt="Profile" />
           <div className="flex flex-col justify-center space-y-4">
             <h2 className="text-3xl font-bold">Welcome to the Sweet Escape!</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <Socials />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <h3 className="font-mono text-lg font-semibold">
+                  Latest YouTube Video
+                </h3>
+                <iframe
+                  src="https://www.youtube.com/embed/-z5jxRbk3R4?si=WqoUMVwYIGgTcJ71"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-mono text-lg font-semibold">
+                  Latest Twitch VOD
+                </h3>
+                <iframe
+                  src="https://player.twitch.tv/?video=2487659351&parent=localhost&parent=teamsweets.com&autoplay=false"
+                  frameborder="0"
+                  allowfullscreen="true"
+                  scrolling="no"
+                ></iframe>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-mono text-lg font-semibold">Socials</h3>
+              <Socials />
+            </div>
           </div>
         </div>
       ),
