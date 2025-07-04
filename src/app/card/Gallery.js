@@ -31,16 +31,16 @@ export default ({ galleryImages }) => {
     };
   };
 
-  // Extract all categories and artists from galleryImages
-  const { categories, artists } = useMemo(() => {
-    const cats = new Set();
-    const arts = new Set();
+  // Extract all categories and artists from galleryImages, with counts
+  const { categoryCounts, artistCounts } = useMemo(() => {
+    const categoryCounts = {};
+    const artistCounts = {};
     galleryImages.forEach((image) => {
       const { category, artist } = getImageMetadata(image);
-      cats.add(category);
-      arts.add(artist);
+      categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+      artistCounts[artist] = (artistCounts[artist] || 0) + 1;
     });
-    return { categories: Array.from(cats), artists: Array.from(arts) };
+    return { categoryCounts, artistCounts };
   }, [galleryImages]);
 
   // State for selected category and artist
@@ -58,6 +58,49 @@ export default ({ galleryImages }) => {
     });
   }, [galleryImages, selectedCategory, selectedArtist]);
 
+  // Calculate filtered counts for selectors
+  const filteredCategoryCounts = useMemo(() => {
+    // If artist is "All", show total per category; else, show count per category for selected artist
+    if (selectedArtist === "All") return categoryCounts;
+    const counts = {};
+    galleryImages.forEach((image) => {
+      const { category, artist } = getImageMetadata(image);
+      if (artist === selectedArtist) {
+        counts[category] = (counts[category] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [galleryImages, categoryCounts, selectedArtist]);
+
+  const filteredArtistCounts = useMemo(() => {
+    // If category is "All", show total per artist; else, show count per artist for selected category
+    if (selectedCategory === "All") return artistCounts;
+    const counts = {};
+    galleryImages.forEach((image) => {
+      const { category, artist } = getImageMetadata(image);
+      if (category === selectedCategory) {
+        counts[artist] = (counts[artist] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [galleryImages, artistCounts, selectedCategory]);
+
+  // Get sorted lists for selectors, filtering out items with 0 count
+  const categories = useMemo(
+    () =>
+      Object.keys(filteredCategoryCounts)
+        .filter((cat) => filteredCategoryCounts[cat] > 0)
+        .sort(),
+    [filteredCategoryCounts]
+  );
+  const artists = useMemo(
+    () =>
+      Object.keys(filteredArtistCounts)
+        .filter((artist) => filteredArtistCounts[artist] > 0)
+        .sort(),
+    [filteredArtistCounts]
+  );
+
   return (
     <>
       <div className="mb-4 flex flex-wrap gap-4">
@@ -71,10 +114,10 @@ export default ({ galleryImages }) => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="border rounded px-2 py-1 text-black bg-white"
           >
-            <option value="All">All</option>
+            <option value="All">All ({galleryImages.length})</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
-                {cat}
+                {cat} ({filteredCategoryCounts[cat] || 0})
               </option>
             ))}
           </select>
@@ -89,10 +132,11 @@ export default ({ galleryImages }) => {
             onChange={(e) => setSelectedArtist(e.target.value)}
             className="border rounded px-2 py-1 text-black bg-white"
           >
-            <option value="All">All</option>
+            <option value="All">All ({galleryImages.length})</option>
             {artists.map((artist) => (
               <option key={artist} value={artist}>
-                {artist.replace(/_/g, " ")}
+                {artist.replace(/_/g, " ")} ({filteredArtistCounts[artist] || 0}
+                )
               </option>
             ))}
           </select>
