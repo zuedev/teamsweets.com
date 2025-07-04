@@ -4,7 +4,7 @@ import Gallery from "./Gallery.js";
 import Socials from "./Socials.js";
 
 export default () => {
-  const latestYouTubeVideoId = "-z5jxRbk3R4";
+  let latestYouTubeVideoId = "-z5jxRbk3R4";
   const latestTwitchVodId = "2487659351";
 
   function getGalleryImages(dir, base = "/gallery") {
