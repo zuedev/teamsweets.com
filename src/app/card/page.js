@@ -173,6 +173,10 @@ export default () => {
       name: "Gallery",
       content: <Gallery galleryImages={galleryImages} />,
     },
+    {
+      name: "Merch",
+      redirect: "https://vee.lol/collections/sweets",
+    },
   ];
 
   return (
